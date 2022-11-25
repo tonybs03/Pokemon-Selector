@@ -1,3 +1,13 @@
+:root {
+  --shadowblue: #0A285F;
+  --darkblue: #3c5aa6;
+  --lightblue: #0075BE;
+  --logoyellow: #ffcb05;
+  --darkyellow: #D5A100;
+  --brightred: #FB1B1B;
+  --white: #ffffff;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +20,66 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@keyframes move {
+  100% {
+      transform: translate3d(0, 0, 1px) rotate(360deg);
+  }
+}
+
+.background {
+  z-index: -100;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: var(--shadowblue);
+  overflow: hidden;
+  opacity: 0.9;
+  background-image: url("../public/bg.png");
+  background-size: cover;
+}
+
+.background span {
+  width: 20vmin;
+  height: 20vmin;
+  border-radius: 20vmin;
+  backface-visibility: hidden;
+  position: absolute;
+  animation: move;
+  animation-duration: 45;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: -999;
+}
+
+.background span:nth-child(1) {
+  opacity: 0.5;
+  color: var(--shadowblue);
+  top: 33%;
+  left: 66%;
+  animation-duration: 11s;
+  animation-delay: -40s;
+  transform-origin: 25vw -12vh;
+}
+
+.background span:nth-child(2) {
+  opacity: 0.5;
+  color: var(--darkyellow);
+  top: 51%;
+  left: 24%;
+  animation-duration: 10s;
+  animation-delay: -35s;
+  transform-origin: 19vw 3vh;
+}
+
+.background span:nth-child(3) {
+  opacity: 0.5;
+  top: 66%;
+  left: 9%;
+  animation-duration: 12s;
+  animation-delay: -6s;
+  transform-origin: 17vw 16vh;
 }
