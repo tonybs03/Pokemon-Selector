@@ -1,5 +1,4 @@
 import './Pages.css'
-import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 const WelcomePage = () => {
@@ -10,15 +9,16 @@ const WelcomePage = () => {
                 <img src="/pokemon.png" alt="pokemonlogo" />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '70px' }}>
-                <Button
-                    type="primary"
-                    size='large'
+                <button
+                    style={{}}
+                    className='welcomeBtn'
                     onClick={() => {
-                        navigate('/home');
+                        navigate('/home/userinfo');
                     }}
                 >
-                    Welcome to the Pokemon Selector
-                </Button>
+                    <span className="welcome-text">Welcome to the Pokemon Selector</span>
+                    <span className="start-text" >Click Here to Start!</span>
+                </button>
             </div>
         </>
     )

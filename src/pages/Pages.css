@@ -2,7 +2,18 @@
     position: relative;
     width: 75%;
     margin: auto;
-    padding-top: 10em;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerimg {
+    position: relative;
+    width: 18%;
+    margin: auto;
+    padding-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -13,3 +24,66 @@ img {
     max-width: 100%;
     max-height: 100%;
 }
+
+.welcomeBtn {
+    width: 450px;
+    padding: 9px;
+    border-radius: 9px;
+    background-color:'lightgray'; 
+    border: 0;
+    transition: all 0.5s ease-in;
+    background-color: var(--logoyellow);
+    border: 3px solid var(--lightblue);
+}
+
+.welcome-text {
+    display: block;
+    font-size: 21px;
+    transition: all 0.25s ease-in;
+    color: var(--lightblue);
+    font-weight: bolder;
+}
+
+.start-text {
+    font-size: 21px;
+    display: none;
+    transition: all 0.25s ease-in;
+    color: var(--lightblue);
+    font-weight: bolder;
+}
+
+.welcomeBtn:hover .start-text {
+    font-size: 21px;
+    display: block;
+    transition: all 0.25s ease-in;
+    transition-delay: 0.25s;
+}
+
+.welcomeBtn:hover .welcome-text {
+    display: none;
+    transition: all 0.25s ease-in;
+}
+
+.welcomeBtn:hover {
+    width: 390px;
+    font-size: 36px;
+    transition: all 0.25s ease-in;
+    box-shadow: 3px 3px 10px var(--shadowblue);
+    cursor:pointer;
+}
+
+.mainContainer {
+    padding: 3%;
+    width: 60%;
+    margin: auto;
+    margin-top: 6%;
+    margin-bottom: 3%;
+    background-color: rgba(0, 0, 0, 0.51);
+    border-radius: 10px;
+}
+
+[title="First Name"], [title="Last Name"], [title="Phone Number"], [title="Address"] {
+    color: white !important;
+    font-size: 13px !important;
+    font-weight:900 !important;
+  }
