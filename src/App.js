@@ -8,7 +8,7 @@ import ReviewPage from './components/ReviewPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div>
         <div className="background">
           <span><img src="/pokeball.png" alt="pokeballs" /></span>
