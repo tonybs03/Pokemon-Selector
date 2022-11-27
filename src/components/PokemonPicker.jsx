@@ -5,9 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 const baseUrl = 'https://pokeapi.co/api/v2';
 
-// 1. get all types
-// 2. allow users to filter by types
-// 3. allow users to filter by 
 // Possible Performance Improvs
 // use a custom hook?
 // use a useReducer instead?
