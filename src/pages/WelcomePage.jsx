@@ -1,12 +1,13 @@
 import './Pages.css'
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/pokemon.png'
 
 const WelcomePage = () => {
     const navigate = useNavigate();
     return (
         <>
             <div className='pokemonimg'>
-                <img src="/pokemon.png" alt="pokemonlogo" />
+                <img src={logo} alt="pokemonlogo" />
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '70px' }}>
                 <button

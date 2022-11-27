@@ -38,7 +38,7 @@ code {
   background: var(--shadowblue);
   overflow: hidden;
   opacity: 0.9;
-  background-image: url("../public/bg.png");
+  background-image: url("./assets/bg.png");
   background-size: cover;
 }
 

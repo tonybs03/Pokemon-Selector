@@ -5,16 +5,17 @@ import WelcomePage from './pages/WelcomePage';
 import UserInfoForm from './components/UserInfoForm';
 import PokePicker from './components/PokemonPicker';
 import ReviewPage from './components/ReviewPage';
+import ball from './assets/pokeball.png'
 
 function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div>
         <div className="background">
-          <span><img src="/pokeball.png" alt="pokeballs" /></span>
-          <span><img src="/pokeball.png" alt="pokeballs" /></span>
-          <span><img src="/pokeball.png" alt="pokeballs" /></span>
-          <span><img src="/pokeball.png" alt="pokeballs" /></span>
+          <span><img src={ball} alt="pokeballs" /></span>
+          <span><img src={ball} alt="pokeballs" /></span>
+          <span><img src={ball} alt="pokeballs" /></span>
+          <span><img src={ball} alt="pokeballs" /></span>
         </div>
       </div>
       <Routes>
