@@ -4,6 +4,7 @@ import MainLayout from './pages/MainLayout';
 import WelcomePage from './pages/WelcomePage';
 import UserInfoForm from './components/UserInfoForm';
 import PokePicker from './components/PokemonPicker';
+import ReviewPage from './components/ReviewPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path='/home' element={<UserInfoForm />}></Route>
           <Route exact path='/home/userinfo' element={<UserInfoForm />}></Route>
           <Route exact path='/home/poke' element={<PokePicker />}></Route>
+          <Route exact path='/home/review' element={<ReviewPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

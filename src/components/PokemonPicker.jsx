@@ -1,5 +1,4 @@
 import { Button, Input, Modal, Select, Table } from 'antd';
-import DisabledContext from 'antd/es/config-provider/DisabledContext';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +18,7 @@ const PokePicker = () => {
     const [keyword, setKeyword] = useState('');
     const [types, setTypes] = useState([]);
     const [typedPokemon, setTypedPokemon] = useState([]);
-    const [selectedPokemon, setSelectedPokemon] = useState(localStorage.getItem("userinfo") ? (JSON.parse(localStorage.getItem("userinfo"))['fav'] ? (JSON.parse(localStorage.getItem("userinfo"))['fav']) : ('')):(''));
+    const [selectedPokemon, setSelectedPokemon] = useState(localStorage.getItem("userinfo") ? (JSON.parse(localStorage.getItem("userinfo"))['pokemon'] ? (JSON.parse(localStorage.getItem("userinfo"))['pokemon']) : ('')):(''));
     const [pokeDetail, setPokeDetail] = useState({});
     const [open, setOpen] = useState(false);
     const [userinfo, setUserinfo] = useState(localStorage.getItem("userinfo") ? JSON.parse(localStorage.getItem("userinfo")) : {});
@@ -103,8 +102,16 @@ const PokePicker = () => {
     };
 
     const storeSelectedPokemon = (name) => {
-        userinfo['fav'] = name[0].toUpperCase() + name.substring(1);
+        userinfo['pokemon'] = name[0].toUpperCase() + name.substring(1);
         localStorage.setItem('userinfo', JSON.stringify(userinfo));
+    }
+
+    const clearSelectedPokemon = () => {
+        userinfo['pokemon'] = undefined;
+        setSelectedPokemon('');
+        console.log(userinfo);
+        localStorage.setItem('userinfo', JSON.stringify(userinfo));
+        setUserinfo(userinfo)
     }
 
     useEffect(() => {
@@ -166,8 +173,16 @@ const PokePicker = () => {
                 ) }
             </div>
 
-            <div style={{ display: 'flex', marginBottom: 10, justifyContent: 'flex-end' }}>
-                <Button type="primary" onClick={() => { navigate('/home/userinfo') }} disabled={selectedPokemon == ''} >
+            <div style={{ display: 'flex', marginBottom: 10, justifyContent: 'space-between', flexWrap:'wrap' }}>
+                <Button type="primary" onClick={() => { navigate('/home/review') }} disabled={!(selectedPokemon === '')} style={{margin: 10}}>
+                    Skip for Now
+                </Button>
+
+                <Button type="primary" onClick={() => {clearSelectedPokemon()}} disabled={(selectedPokemon === '')} style={{margin: 10}}>
+                    Clear My Choice
+                </Button>
+
+                <Button type="primary" onClick={() => { navigate('/home/review') }} disabled={selectedPokemon === ''} style={{margin: 10}}>
                     Next: Review
                 </Button>
             </div>

@@ -82,7 +82,7 @@ img {
     border-radius: 10px;
 }
 
-[title="First Name"], [title="Last Name"], [title="Phone Number"], [title="Address"] {
+[title="First Name"], [title="Last Name"], [title="Phone Number"], [title="Address"], [title="Fav Pokemon"] {
     color: white !important;
     font-size: 13px !important;
     font-weight:900 !important;
