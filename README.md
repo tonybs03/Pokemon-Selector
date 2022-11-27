@@ -30,7 +30,7 @@ Please use the following installation instructions in your terminal:
 Please use the following command line in your terminal to initiate:
 
 
-```npm run start```
+```npm start```
 
 
 ## Contribution Guidelines <a name="contributing"></a>
