@@ -80,6 +80,7 @@ img {
     margin-bottom: 3%;
     background-color: rgba(0, 0, 0, 0.51);
     border-radius: 10px;
+    transition: all 0.25s ease-in;
 }
 
 [title="First Name"], [title="Last Name"], [title="Phone Number"], [title="Address"], [title="Fav Pokemon"] {
@@ -87,3 +88,10 @@ img {
     font-size: 13px !important;
     font-weight:900 !important;
   }
+
+@media only screen and (max-width: 600px) {
+    .mainContainer {
+        transition: all 0.25s ease-in;
+        width: 90%;
+    }
+}

@@ -170,7 +170,7 @@ const PokePicker = () => {
                 ) }
             </div>
 
-            <div style={{ display: 'flex', marginBottom: 10, justifyContent: 'space-between', flexWrap:'wrap' }}>
+            <div style={{ display: 'flex', marginBottom: 10, justifyContent: 'center', flexWrap:'wrap' }}>
                 <Button type="primary" onClick={() => { navigate('/home/review') }} disabled={!(selectedPokemon === '')} style={{margin: 10}}>
                     Skip for Now
                 </Button>

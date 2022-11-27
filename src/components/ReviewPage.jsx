@@ -127,14 +127,14 @@ const ReviewPage = () => {
             </Item>
           </Form>
 
-          <div style={{ textAlign: "center", width: "100%", display:'flex', justifyContent:'space-around' }}>
-            <Button type="primary" onClick={submitHandler}>
+          <div style={{ textAlign: "center", width: "100%", display:'flex', justifyContent:'center', flexWrap:'wrap' }}>
+            <Button type="primary" onClick={submitHandler} style={{ margin: 10 }}>
               Submit
             </Button>
-            <Button type="primary" onClick={()=>navigate('/home/userinfo')}>
+            <Button type="primary" onClick={()=>navigate('/home/userinfo')} style={{ margin: 10 }}>
               Edit Your Info
             </Button>
-            <Button type="primary" onClick={()=>navigate('/home/poke')}>
+            <Button type="primary" onClick={()=>navigate('/home/poke')} style={{ margin: 10 }}> 
               Change Your Pokemon
             </Button>
           </div>
