@@ -13,7 +13,6 @@ const UserInfoForm = () => {
         form.validateFields()
             .then(
                 (result) => {
-                    console.log('my result is', result);
                     setUserinfo(result);
                     localStorage.setItem('userinfo', JSON.stringify(result));
                     navigate('/home/poke');
