@@ -1,16 +1,12 @@
 import { Button, Form, Input, Row, Col, Modal, Result } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "antd/es/form/Form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 const Item = Form.Item;
 
 const ReviewPage = () => {
   const [reviewform] = useForm();
-  const [userinfo, setUserinfo] = useState(
-    localStorage.getItem("userinfo")
-      ? JSON.parse(localStorage.getItem("userinfo"))
-      : {}
-  );
+  const [userinfo, setUserinfo] = useOutletContext();
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
@@ -19,13 +15,11 @@ const ReviewPage = () => {
     reviewform
       .validateFields()
       .then((result) => {
-        console.log("success", result);
         setSuccess(true);
         setOpen(true);
         localStorage.clear();
       })
       .catch((error) => {
-        console.log("failed", error);
         setSuccess(false);
         setOpen(true);
       });
