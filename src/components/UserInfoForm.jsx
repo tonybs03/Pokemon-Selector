@@ -1,41 +1,34 @@
 import { Button, Form, Input, Row, Col } from "antd";
 import { useState, useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 const Item = Form.Item;
 
 const UserInfoForm = () => {
   const [form] = useForm();
-  const [userinfo, setUserinfo] = useState(
-    localStorage.getItem("userinfo")
-      ? JSON.parse(localStorage.getItem("userinfo"))
-      : {}
-  );
+  const [userinfo, setUserinfo] = useOutletContext();
   const [canskip, setCanskip] = useState(false);
   const navigate = useNavigate();
 
   const submitHandler = async () => {
     form.validateFields().then((result) => {
-      console.log(result);
-      userinfo["firstName"] = result.firstName;
-      userinfo["lastName"] = result.lastName;
-      userinfo["phoneNumber"] = result.phoneNumber;
-      userinfo["address"] = result.address;
-      console.log("userinfo is", userinfo);
-      localStorage.setItem("userinfo", JSON.stringify(userinfo));
+      let temp = userinfo;
+      Object.keys(result).forEach(key => {
+        temp[key] = result[key];
+      });
+      setUserinfo(temp);
+      localStorage.setItem("userinfo", JSON.stringify(temp));
       navigate("/home/poke");
     });
   };
 
   const skipHandler = async () => {
     let result = await form.getFieldValue();
-    userinfo["firstName"] = result.firstName ? result.firstName : undefined;
-    userinfo["lastName"] = result.lastName ? result.lastName : undefined;
-    userinfo["phoneNumber"] = result.phoneNumber
-      ? result.phoneNumber
-      : undefined;
-    userinfo["address"] = result.address ? result.address : undefined;
-    localStorage.setItem("userinfo", JSON.stringify(userinfo));
+    let temp = userinfo;
+    Object.keys(result).forEach(key => {
+      temp[key] = result[key];
+    });
+    localStorage.setItem("userinfo", JSON.stringify(temp));
     navigate("/home/poke");
   };
 
@@ -160,6 +153,32 @@ const UserInfoForm = () => {
       </Col>
     </Row>
   );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 };
 
 export default UserInfoForm;
