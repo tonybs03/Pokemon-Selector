@@ -5,11 +5,6 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 
 const baseUrl = "https://pokeapi.co/api/v2";
 
-// Possible Performance Improvs
-// use a custom hook?
-// use a useReducer instead?
-// useMemo? useCallback?
-
 const PokePicker = () => {
   const [list, setList] = useState([]);
   const [keyword, setKeyword] = useState("");
@@ -18,7 +13,7 @@ const PokePicker = () => {
   const [pokeDetail, setPokeDetail] = useState({});
   const [open, setOpen] = useState(false);
   const [userinfo, setUserinfo] = useOutletContext();
-  const [selectedPokemon, setSelectedPokemon] = useState(userinfo['pokemon']);
+  const [selectedPokemon, setSelectedPokemon] = useState(userinfo["pokemon"]);
   const navigate = useNavigate();
 
   const styles = {
@@ -77,7 +72,6 @@ const PokePicker = () => {
 
   const fetchPokemonByName = async (name) => {
     const res = await axios.get(`${baseUrl}/pokemon/${name}`);
-    console.log(res.data);
     setPokeDetail(res.data);
   };
 
@@ -106,18 +100,19 @@ const PokePicker = () => {
   };
 
   const storeSelectedPokemon = (name) => {
-    let temp = userinfo;
-    temp["pokemon"] = name[0].toUpperCase() + name.substring(1);
+    let temp = {
+      ...userinfo,
+      pokemon: name[0].toUpperCase() + name.substring(1),
+    };
     setUserinfo(temp);
-    localStorage.setItem("userinfo", JSON.stringify(userinfo));
+    localStorage.setItem("userinfo", JSON.stringify(temp));
   };
 
   const clearSelectedPokemon = () => {
-    let temp = userinfo;
-    temp["pokemon"] = undefined;
-    setSelectedPokemon("");
-    localStorage.setItem("userinfo", JSON.stringify(temp));
+    let temp = { ...userinfo, pokemon: undefined };
+    setSelectedPokemon(undefined);
     setUserinfo(temp);
+    localStorage.setItem("userinfo", JSON.stringify(temp));
   };
 
   useEffect(() => {
@@ -211,7 +206,7 @@ const PokePicker = () => {
           onClick={() => {
             navigate("/home/review");
           }}
-          disabled={!(selectedPokemon === "")}
+          disabled={!(selectedPokemon === undefined)}
           style={{ margin: 10 }}
         >
           Skip for Now
@@ -222,7 +217,7 @@ const PokePicker = () => {
           onClick={() => {
             clearSelectedPokemon();
           }}
-          disabled={selectedPokemon === ""}
+          disabled={selectedPokemon === undefined}
           style={{ margin: 10 }}
         >
           Clear My Choice
@@ -233,7 +228,7 @@ const PokePicker = () => {
           onClick={() => {
             navigate("/home/review");
           }}
-          disabled={selectedPokemon === ""}
+          disabled={selectedPokemon === undefined}
           style={{ margin: 10 }}
         >
           Next: Review
@@ -245,42 +240,53 @@ const PokePicker = () => {
         onCancel={() => setOpen(false)}
         onOk={() => setOpen(false)}
       >
-        {pokeDetail.stats?.map((stat) => (
-          <div key={JSON.stringify(stat["stat"]["name"])}>
-            <span>
-              {stat["stat"]["name"][0].toUpperCase() +
-                stat["stat"]["name"].substring(1) +
-                ": "}
-            </span>
-            <span>{stat["base_stat"]}</span>
-          </div>
-        ))}
-
-        <div>
-          <span>Aibilities: </span>
-          <span>
-            {pokeDetail.abilities?.map((a) => (
-              <span key={JSON.stringify(a.ability)}>
-                {a.ability.name[0].toUpperCase() +
-                  a.ability.name.substring(1) +
-                  " "}
-              </span>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <div style={{ width: '60%' }}>
+            {pokeDetail.stats?.map((stat) => (
+              <div key={JSON.stringify(stat["stat"]["name"])}>
+                <span>
+                  {stat["stat"]["name"][0].toUpperCase() +
+                    stat["stat"]["name"].substring(1) +
+                    ": "}
+                </span>
+                <span>{stat["base_stat"]}</span>
+              </div>
             ))}
-          </span>
-        </div>
 
-        <div>
-          <span>Height: </span>
-          <span>
-            {pokeDetail?.height}
-          </span>
-        </div>
+            <div>
+              <span>Aibilities: </span>
+              <span>
+                {pokeDetail.abilities?.map((a) => (
+                  <span key={JSON.stringify(a.ability)}>
+                    {a.ability.name[0].toUpperCase() +
+                      a.ability.name.substring(1) +
+                      " "}
+                  </span>
+                ))}
+              </span>
+            </div>
 
-        <div>
-          <span>Weight: </span>
-          <span>
-            {pokeDetail?.weight}
-          </span>
+            <div>
+              <span>Height: </span>
+              <span>{pokeDetail?.height}</span>
+            </div>
+
+            <div>
+              <span>Weight: </span>
+              <span>{pokeDetail?.weight}</span>
+            </div>
+          </div>
+          <div style={{ width: '60%', display: 'flex' }}>
+            {pokeDetail.sprites ? (
+              pokeDetail.sprites["front_default"] == null ? (
+                ""
+              ) : (
+                <img src={pokeDetail?.sprites["front_default"]} alt="pokemon" />
+              )
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </Modal>
     </div>

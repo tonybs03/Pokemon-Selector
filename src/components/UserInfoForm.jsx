@@ -47,7 +47,6 @@ const UserInfoForm = () => {
     form
       .validateFields()
       .then((result) => {
-        console.log("success", result);
         setCanskip(false);
       })
       .catch((error) => {

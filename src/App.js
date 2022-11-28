@@ -19,12 +19,12 @@ function App() {
         </div>
       </div>
       <Routes>
-        <Route exact path="/" element={<WelcomePage />} />
-        <Route exact path="/home" element={<MainLayout />}>
-          <Route exact path='/home' element={<UserInfoForm />}></Route>
-          <Route exact path='/home/userinfo' element={<UserInfoForm />}></Route>
-          <Route exact path='/home/poke' element={<PokePicker />}></Route>
-          <Route exact path='/home/review' element={<ReviewPage />}></Route>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/home" element={<MainLayout />}>
+          <Route path='/home' element={<UserInfoForm />}></Route>
+          <Route path='/home/userinfo' element={<UserInfoForm />}></Route>
+          <Route path='/home/poke' element={<PokePicker />}></Route>
+          <Route path='/home/review' element={<ReviewPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

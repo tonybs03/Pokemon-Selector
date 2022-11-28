@@ -50,13 +50,7 @@ const ReviewPage = () => {
           <Form
             form={reviewform}
             disabled={true}
-            initialValues={{
-              firstName: userinfo.firstName,
-              lastName: userinfo.lastName,
-              phoneNumber: userinfo.phoneNumber,
-              address: userinfo.address,
-              pokemon: userinfo.pokemon,
-            }}
+            initialValues={userinfo}
           >
             <Item
               labelCol={{ style: { width: 120 } }}
